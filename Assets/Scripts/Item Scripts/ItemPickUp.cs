@@ -10,8 +10,8 @@ public class ItemPickUp : MonoBehaviour
     public InventoryItemData itemData;
 
     private SphereCollider myCollider;
-
-    private void Awake()
+     
+    private void Awake() 
     {
         myCollider = GetComponent<SphereCollider>();
         myCollider.isTrigger = true;
@@ -20,11 +20,11 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var inventory = other.transform.GetComponent<InventoryHolder>();
+        var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
 
         if (!inventory) return;
 
-        if (inventory.InventorySystem.AddToInventory(itemData, 1))
+        if (inventory.AddToInventory(itemData, 1))
         {
             Destroy(gameObject);
         } 

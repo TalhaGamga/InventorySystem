@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8295296f147014782ad0b78a755060, type: 3}
   m_Name: Potato
   m_EditorClassIdentifier: 
-  id: 0
-  displayName: Potato
-  description: "This is a potato!\n\t"
+  ID: 1
+  DisplayName: Potato
+  Description: This is a potato!
   Icon: {fileID: -6160415447981303602, guid: cd1f52b0ac953284bb5162babc751e97, type: 3}
-  maxStackSize: 1
+  MaxStackSize: 1
+  GoldValue: 7

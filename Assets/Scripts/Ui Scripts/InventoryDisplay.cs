@@ -10,7 +10,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
     public InventorySystem InventorySystem => inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
-    public abstract void AssignSlot(InventorySystem invToDisplay);
+    public abstract void AssignSlot(InventorySystem invToDisplay); // Implemented in child classes.
 
     protected virtual void Start()
     {
@@ -19,7 +19,7 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     protected virtual void UpdateSlot(InventorySlot updatedSlot)
     {
-        foreach (var slot in SlotDictionary)
+        foreach (var slot in SlotDictionary)    
         {
             if (slot.Value == updatedSlot) // Slot value - the "under the hood" inventory slot.
             {
@@ -46,7 +46,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 return;
             }
 
-            else
+            else // Pick up the item in the clicked slot.
             {
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
                 clickedUISlot.ClearSlot();
@@ -73,8 +73,9 @@ public abstract class InventoryDisplay : MonoBehaviour
         {
             bool isSameItem = clickedUISlot.AssignedInventorySlot.ItemData == mouseInventoryItem.AssignedInventorySlot.ItemData;
 
-            if (isSameItem && clickedUISlot.AssignedInventorySlot.RoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
+            if (isSameItem && clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
             {
+                // Are both items the same? If so combine them
                 clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
                 clickedUISlot.UpdateUISlot();
 
@@ -82,7 +83,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 return;
             }
 
-            else if (isSameItem && !clickedUISlot.AssignedInventorySlot.RoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize, out int leftInStack))
+            else if (isSameItem && !clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize, out int leftInStack))
             {
                 if (leftInStack < 1) SwapSlots(clickedUISlot); //Stack is full so swap the items.
                 else //Slot is not at max, so take what's need from the mouse inventory.

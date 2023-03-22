@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8295296f147014782ad0b78a755060, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  id: 0
-  displayName: Tomato
-  description: This is a tomato!
+  ID: 2
+  DisplayName: Tomato
+  Description: This is a tomato!
   Icon: {fileID: 3467876396792827902, guid: cd1f52b0ac953284bb5162babc751e97, type: 3}
-  maxStackSize: 5
+  MaxStackSize: 5
+  GoldValue: 16
